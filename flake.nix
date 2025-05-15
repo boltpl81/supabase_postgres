@@ -154,6 +154,7 @@
           ./nix/ext/wrappers/default.nix
           ./nix/ext/supautils.nix
           ./nix/ext/plv8.nix
+          ./nix/ext/pg_branch.nix
         ];
 
         #Where we import and build the orioledb extension, we add on our custom extensions
@@ -1368,6 +1369,8 @@
           # Any extra packages we might want to include in our package
           # set can go here.
           inherit (pkgs);
+          # pg_branch = pkgs.callPackage ./nix/ext/pg_branch.nix {};
+
         };
 
         # The list of exported 'checks' that are run with every run of 'nix
