@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
     sha256 = "1768q1ra8m121q24kg7garrafmwfy71idgjpnqzinaiq0f1as06r";
   };
 
-  nativeBuildInputs = [ ];
+  nativeBuildInputs = [ patchelf ];
   buildInputs = [ postgresql btrfs-progs ];
   propagatedBuildInputs = [ btrfs-progs ];
 
@@ -30,7 +30,7 @@ stdenv.mkDerivation rec {
     cp *.control $out/share/postgresql/extension
     cp *.sql     $out/share/postgresql/extension
 
-    patchelf --set-rpath $out/lib $out/lib/pg_branch.so
+    patchelf --set-rpath "${btrfs-progs}/lib:${postgresql}/lib" $out/lib/pg_branch.so
   '';
 
 
